@@ -21,9 +21,9 @@ CATEGORIES = ["Bug", "Feature", "Task", "Improvement"]
 GROUPS = ["Frontend", "Backend", "Infrastructure", "Design"]
 SITES = ["Site A", "Site B", "Site C"]
 USERS = ["John Doe", "Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Wilson"]
-# base_url = "http://localhost:5000"
-base_url = "http://mockapigen-brheczbde3f6ewc2.centralindia-01.azurewebsites.net"
-
+base_url = "http://localhost:5000"
+# base_url = "http://mockapigen-brheczbde3f6ewc2.centralindia-01.azurewebsites.net"
+azuer_url = "http://mockapigen-brheczbde3f6ewc2.centralindia-01.azurewebsites.net"
 # Storage for our mock data
 issues = []
 issue_history = {}
@@ -66,7 +66,7 @@ def generate_mock_issues(count=150):
                 "customfield_10046": {"value": random.choice(GROUPS)},
                 "customfield_10045": [{"value": random.choice(SITES)}],
                 "duedate": due_date,
-                "watches": {"self": f"{base_url}/rest/api/2/issue/{issue_key}/watchers"}
+                "watches": {"self": f"{azuer_url}/rest/api/2/issue/{issue_key}/watchers"}
             }
         }
         
