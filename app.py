@@ -66,7 +66,7 @@ def generate_mock_issues(count=150):
                 "customfield_10046": {"value": random.choice(GROUPS)},
                 "customfield_10045": [{"value": random.choice(SITES)}],
                 "duedate": due_date,
-                "watches": {"self": f"{azuer_url}/rest/api/2/issue/{issue_key}/watchers"}
+                "watches": {"self": f"{base_url}/rest/api/2/issue/{issue_key}/watchers"}
             }
         }
         
