@@ -21,6 +21,8 @@ CATEGORIES = ["Bug", "Feature", "Task", "Improvement"]
 GROUPS = ["Frontend", "Backend", "Infrastructure", "Design"]
 SITES = ["Site A", "Site B", "Site C"]
 USERS = ["John Doe", "Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Wilson"]
+# base_url = "http://localhost:5000"
+base_url = "http://mockapigen-brheczbde3f6ewc2.centralindia-01.azurewebsites.net"
 
 # Storage for our mock data
 issues = []
@@ -64,7 +66,7 @@ def generate_mock_issues(count=150):
                 "customfield_10046": {"value": random.choice(GROUPS)},
                 "customfield_10045": [{"value": random.choice(SITES)}],
                 "duedate": due_date,
-                "watches": {"self": f"http://localhost:5000/rest/api/2/issue/{issue_key}/watchers"}
+                "watches": {"self": f"{base_url}/rest/api/2/issue/{issue_key}/watchers"}
             }
         }
         
@@ -115,7 +117,7 @@ def server_info():
     logger.info("Received server info request")
     
     response = {
-        "baseUrl": "http://localhost:5000",
+        "baseUrl": base_url,
         "version": "8.13.5",
         "versionNumbers": [8, 13, 5],
         "deploymentType": "Server",
@@ -153,7 +155,7 @@ def get_current_user():
     logger.info("Received current user request")
     
     response = {
-        "self": "http://localhost:5000/rest/api/2/user?username=test_user",
+        "self": f"{base_url}/rest/api/2/user?username=test_user",
         "name": "test_user",
         "displayName": "Test User",
         "active": True,
@@ -240,14 +242,14 @@ def get_watchers(issue_key):
     
     for _ in range(num_watchers):
         watchers.append({
-            "self": f"http://localhost:5000/rest/api/2/user?username={uuid.uuid4()}",
+            "self": f"{base_url}/rest/api/2/user?username={uuid.uuid4()}",
             "name": f"user{random.randint(1, 100)}",
             "displayName": random.choice(USERS),
             "active": True
         })
     
     response = {
-        "self": f"http://localhost:5000/rest/api/2/issue/{issue_key}/watchers",
+        "self": f"{base_url}/rest/api/2/issue/{issue_key}/watchers",
         "isWatching": False,
         "watchCount": len(watchers),
         "watchers": watchers
@@ -311,18 +313,18 @@ def get_projects():
     logger.info("Received projects request")
     
     projects = [{
-        "self": "http://localhost:5000/rest/api/2/project/10000",
+        "self": f"{base_url}/rest/api/2/project/10000",
         "id": "10000",
         "key": PROJECT_NAME,
         "name": PROJECT_NAME,
         "avatarUrls": {
-            "48x48": "http://localhost:5000/secure/projectavatar?size=large&pid=10000",
-            "24x24": "http://localhost:5000/secure/projectavatar?size=small&pid=10000",
-            "16x16": "http://localhost:5000/secure/projectavatar?size=xsmall&pid=10000",
-            "32x32": "http://localhost:5000/secure/projectavatar?size=medium&pid=10000"
+            "48x48": f"{base_url}/secure/projectavatar?size=large&pid=10000",
+            "24x24": f"{base_url}/secure/projectavatar?size=small&pid=10000",
+            "16x16": f"{base_url}/secure/projectavatar?size=xsmall&pid=10000",
+            "32x32": f"{base_url}/secure/projectavatar?size=medium&pid=10000"
         },
         "projectCategory": {
-            "self": "http://localhost:5000/rest/api/2/projectCategory/10000",
+            "self": f"{base_url}/rest/api/2/projectCategory/10000",
             "id": "10000",
             "name": "MOCK Category",
             "description": "Mock Project Category"
