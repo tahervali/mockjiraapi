@@ -97,8 +97,7 @@ def generate_issue_history(issue_key):
         
         # Create a timestamp for this change
         days_ago = random.randint(0, 80)  # Ensure it's within our 90-day window
-        change_date = (datetime.datetime.now() - datetime.timedelta(days=days_ago)).isoformat()
-        
+        change_date = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days_ago)).isoformat()
         history.append({
             "Key": issue_key,
             "Author": random.choice(USERS),
