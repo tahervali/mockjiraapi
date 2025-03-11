@@ -38,14 +38,14 @@ def generate_mock_issues(count=150):
         
         # Create timestamps within the last 90 days
         days_ago = random.randint(0, 90)
-        created_date = (datetime.datetime.now() - datetime.timedelta(days=days_ago)).isoformat()
+        created_date = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days_ago)).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
         
         # 50% chance of having a due date
         due_date = None
         if random.random() > 0.5:
             due_days = random.randint(days_ago, days_ago + 30)
-            due_date = (datetime.datetime.now() - datetime.timedelta(days=days_ago) + 
-                         datetime.timedelta(days=due_days)).strftime("%Y-%m-%d")
+            due_date = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days_ago) + 
+           datetime.timedelta(days=due_days)).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
         
         # Create the issue
         issue = {
